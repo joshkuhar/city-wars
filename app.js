@@ -132,13 +132,20 @@ $('button').click(function() {
     console.log(place_1);
     console.log(place_2);
 
+    var pop1 = parseInt(place_1.population);
+    var pop2 = parseInt(place_2.population);
+  
+    $("ul").append(place_1.name + " - Population: " + pop1.toLocaleString() + "<br>");
+    $("ul").append(place_2.name + " - Population: " + pop2.toLocaleString() + "<br>");
+
+
 });
 
 
 /*
 
 
-
+ single: url + '&for=place:' + city + '&in=state:' + state,
 
 var place = [
 "07000", "21184", "35896", "37000", "50000", "51000", "77256", "03000", "04720", 
