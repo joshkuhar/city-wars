@@ -95,7 +95,7 @@ $('button').click(function() {
 
     $("ul").empty();
 
-    var url = 'http://api.census.gov/data/2014/acs1?get=NAME,B01001_001E';
+    var url = 'https://api.census.gov/data/2014/acs1?get=NAME,B01001_001E';
     var API_URL = {
         all: url + '&for=place:*',
         single: url + '&for=place:07000&in=state:01'
