@@ -1,14 +1,65 @@
+body {
+  background-color: #6536F5;
+}
+
 .container {
-        
-        margin: 0 auto;
-        text-align: center;
+  margin: 0 auto;
+  text-align: center;
     }
+
+h1, h3 {
+  color:  #36F5C4;
+}
+
 
 ul {
   text-align: center;
   margin: 0 auto;
+
+}
+
+button {
+  background-color: white;
+  border-radius: 25px;
 }
 
 li {
   display: inline;
+  font-family: sans-serif;
+  color: #36F5C4;
+  font-size: 1.25em;
+      text-shadow: .15em .15em .15em #333;
+}
+
+#or {
+	color: white;
+
+}
+
+.answer {
+  font-family: sans-serif;
+  color: #36F5C4;
+  font-size: 1.25em;
+  text-shadow: .15em .15em .15em #333;
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+
+  	body {
+  		font-size: 1.75em;
+  	}
+
+  	.container {
+  		margin-top: 8em;
+  	}
+
+  	button {
+  		font-size: 1.5em;
+  		border-radius: 25px;
+  	}
+
 }

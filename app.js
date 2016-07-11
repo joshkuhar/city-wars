@@ -93,6 +93,8 @@ var smallerCity = "";
 
 $('button').click(function() {
 
+    $("ul").empty();
+
     var url = 'http://api.census.gov/data/2014/acs1?get=NAME,B01001_001E';
     var API_URL = {
         all: url + '&for=place:*',
@@ -168,7 +170,7 @@ $('button').click(function() {
     //console.log(largestCity);
   
   
-    $("ul").append("<li id='A'>" + place_1.name + "</li> or <li id='B'>" + place_2.name + "</li>");
+    $("ul").append("<li id='A'>" + place_1.name + "</li> <span id='or'>    ...or...    </span><li id='B'>" + place_2.name + "</li>");
 });
 
 
@@ -176,9 +178,11 @@ $("ul").on("click", "li", function() {
   
   var a = $(this).text();
   if (a === largestCity) {
-    $("ul").append("<br><br>Correct!<br><br>" + largestCity + " has a population of " + largestPop.toLocaleString() + "<br> While " + smallerCity + " has a population of " + smallerPop.toLocaleString() + ".");
+    $("ul").append("<span class='answer'><br><br>Correct!<br><br>" + largestCity + " has a population of " + largestPop.toLocaleString() + ".<br> While " + smallerCity + " has a population of " + smallerPop.toLocaleString() + ".</span>");
     console.log(largestCity);
   } else {
+    $("ul").append("<span class='answer'><br><br>Incorrect. Try the other one.</span>");
+    console.log(largestCity);
     console.log("Wrong");
   }
 });
@@ -305,7 +309,7 @@ $('button').click(function() {
 
 });
 
-
+http://jsbin.com/xoqepobafi/edit?html,css,js,console,output
 
 
 
