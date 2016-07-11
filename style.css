@@ -1,4 +1,14 @@
 .container {
-        width: 1000px;
+        
         margin: 0 auto;
+        text-align: center;
     }
+
+ul {
+  text-align: center;
+  margin: 0 auto;
+}
+
+li {
+  display: inline;
+}

@@ -80,9 +80,20 @@ var place = [
 ];
 
 
+var data = [];
+var city1Population = 0;
+var city2Population = 0;
+var city1Name = "";
+var city2Name = "";
+var largestPop = 0;
+var largestCity = "";
+var smallerPop = 0;
+var smallerCity = "";
+
+
 $('button').click(function() {
 
-    var url = 'https://api.census.gov/data/2014/acs1?get=NAME,B01001_001E';
+    var url = 'http://api.census.gov/data/2014/acs1?get=NAME,B01001_001E';
     var API_URL = {
         all: url + '&for=place:*',
         single: url + '&for=place:07000&in=state:01'
@@ -131,15 +142,51 @@ $('button').click(function() {
 
     console.log(place_1);
     console.log(place_2);
-
-    var pop1 = parseInt(place_1.population);
-    var pop2 = parseInt(place_2.population);
   
-    $("ul").append(place_1.name + " - Population: " + pop1.toLocaleString() + "<br>");
-    $("ul").append(place_2.name + " - Population: " + pop2.toLocaleString() + "<br>");
-
-
+    city1Population = parseInt(place_1.population);
+    city2Population = parseInt(place_2.population);
+  
+    city1Name = place_1.name;
+    city2Name = place_2.name;
+  
+    if (city1Population > city2Population) {
+      largestPop = city1Population;
+      largestCity = city1Name;
+      smallerPop = city2Population;
+      smallerCity = city2Name;
+    } else {
+      largestPop = city2Population;
+      largestCity = city2Name;
+      smallerPop = city1Population;
+      smallerCity = city1Name;
+    }
+ 
+  
+    // This changes the the global variable largestPop to the largest population between the two variables
+    
+    //console.log(largestPop);
+    //console.log(largestCity);
+  
+  
+    $("ul").append("<li id='A'>" + place_1.name + "</li> or <li id='B'>" + place_2.name + "</li>");
 });
+
+
+$("ul").on("click", "li", function() {
+  
+  var a = $(this).text();
+  if (a === largestCity) {
+    $("ul").append("<br><br>Correct!<br><br>" + largestCity + " has a population of " + largestPop.toLocaleString() + "<br> While " + smallerCity + " has a population of " + smallerPop.toLocaleString() + ".");
+    console.log(largestCity);
+  } else {
+    console.log("Wrong");
+  }
+});
+
+
+
+
+
 
 
 /*
