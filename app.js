@@ -7,23 +7,6 @@ $('#start').click(function() {
 
     $("#start").hide();
     $("#message").css("display", "inline");
-    setTimeout(function(){
-        $("#message").hide();
-        $("#play, #question").css("display", "inline");
-    }, 2000);
-});
-
-$('#play').click(function() {
-    /*
-    $("#start").hide();
-    $("#message").css("display", "inline");
-
-    
-    $("#message").hide();
-    $("#play").css("display", "inline");
-    */
-
-    $("ul").empty();
 
     var url = 'https://api.census.gov/data/2014/acs1?get=NAME,B01001_001E';
     var API_URL = {
@@ -46,6 +29,16 @@ $('#play').click(function() {
         });
     }
 
+
+    setTimeout(function(){
+        $("#message").hide();
+        $("#play").css("display", "inline");
+    }, 2000);
+});
+
+$('#play').click(function() {
+    $("ul").empty();
+    $("#question").css("display", "inline");
     function getPlace() {
 
         var rand = data[Math.floor(Math.random() * data.length)];

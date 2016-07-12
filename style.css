@@ -47,6 +47,17 @@ li {
   text-shadow: .15em .15em .15em #333;
 }
 
+#details {
+	width: 40em;
+	color: white;
+	font-size: .8em;
+	margin-top: 15em;
+	text-align: center;
+	display: inline-block;
+
+
+}
+
 @media only screen 
   and (min-device-width: 375px) 
   and (max-device-width: 667px) 
@@ -59,11 +70,20 @@ li {
 
   	.container {
   		margin-top: 8em;
+  		padding-left: 3em;
+    	padding-right: 3em;
   	}
 
   	button {
   		font-size: 1.5em;
   		border-radius: 25px;
+  	}
+
+  	#details {
+  		width: auto;
+  		padding-left: 3em;
+    	padding-right: 3em;
+    	font-size: 1em;
   	}
 
 }
