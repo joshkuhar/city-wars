@@ -11,10 +11,14 @@ h1, h3 {
   color:  #36F5C4;
 }
 
+#play, #question, #message{
+	display: none;
+}
 
 ul {
   text-align: center;
   margin: 0 auto;
+  padding-left: 0;
 
 }
 
