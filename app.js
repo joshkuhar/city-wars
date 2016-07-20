@@ -24,82 +24,81 @@ $('#start').click(function() {
                 data.push(mainArray[i]);
             }
 
+            $('#play').click(function() {
+                $("ul").empty();
+                $("#question").css("display", "block");
+
+                function getPlace() {
+
+                    var rand = data[Math.floor(Math.random() * data.length)];
+                    var place = {};
+
+                    rand.map(function(current, index) {
+
+                        if (data[0][index] === 'B01001_001E') {
+                            data[0][index] = 'population';
+                        }
+
+                        if (data[0][index] === 'NAME') {
+                            data[0][index] = 'name';
+                        }
+
+                        place[data[0][index]] = current;
+
+                    });
+
+                    return place;
+
+                }
+
+
+                var place_1 = getPlace(),
+                    place_2 = getPlace();
+
+
+                $("ul").append("<li value=" + place_1.population + " id='A'>" + place_1.name + "</li> <span id='or'></span><li value= " + place_2.population + " id='B'>" + place_2.name + "</li>")
+                    .on('click', 'li', function() {
+
+                        var p1 = parseInt(place_1.population),
+                            p2 = parseInt(place_2.population);
+                        console.log(p1 + " " + p2);
+
+                        // compare value which is clicked to another value
+                        // you can do it either by $(this).val()
+                        // or the way beneath
+
+                        //correct
+                        if ($(this).attr('id') === 'A' && $(this).val() > $('#B').val()) {
+                            $(".answer").empty();
+                            $("ul").append("<div class='answer'><h3>Correct!</h3><p>" + place_1.name + " has a population of <span>" + place_1.population + "</span>.</p><p> While " + place_2.name + " has a population of <span>" + place_2.population + "</span>.</p></div>");
+                            console.log('place 1 is greater');
+                            //incorrect
+                        } else if ($(this).attr('id') === 'A' && $(this).val() < $('#B').val()) {
+                            $(".answer").empty();
+                            $("ul").append("<div class='answer'><h3>Incorrect.</h3><p>Try the other one.</p>");
+                            console.log("incorrect");
+                            //correct
+                        } else if ($(this).attr('id') === 'B' && $(this).val() > $('#A').val()) {
+                            $(".answer").empty();
+                            $("ul").append("<div class='answer'><h3>Correct!</h3><p>" + place_2.name + " has a population of <span>" + place_2.population + "</span>.</p><p> While " + place_1.name + " has a population of <span>" + place_1.population + "</span>.</p></div>");
+                            console.log('place 2 is greater');
+                            //incorrect
+                        } else if ($(this).attr('id') === 'B' && $(this).val() < $('#A').val()) {
+                            $(".answer").empty();
+                            $("ul").append("<div class='answer'><h3>Incorrect.</h3><p> Try the other one.</p></div>");
+                            console.log("incorrect");
+                        }
+
+                    });
+
+            });
+
         }).fail(function(error) {
             console.log(error);
         });
     }
 
 
-    setTimeout(function(){
-        $("#message").hide();
-        $("#play").css("display", "inline");
-    }, 2000);
-});
-
-$('#play').click(function() {
-    $("ul").empty();
-    $("#question").css("display", "inline");
-    function getPlace() {
-
-        var rand = data[Math.floor(Math.random() * data.length)];
-        var place = {};
-
-        rand.map(function(current, index) {
-
-            if (data[0][index] === 'B01001_001E') {
-                data[0][index] = 'population';
-            }
-
-            if (data[0][index] === 'NAME') {
-                data[0][index] = 'name';
-            }
-
-            place[data[0][index]] = current;
-
-        });
-
-        return place;
-
-    }
-
-
-    var place_1 = getPlace(),
-        place_2 = getPlace();
-
-
-    $("ul").append("<li value=" + place_1.population + " id='A'>" + place_1.name + "</li> <span id='or'>    ...or...    </span><li value= " + place_2.population + " id='B'>" + place_2.name + "</li>")
-        .on('click', 'li', function() {
-
-            var p1 = parseInt(place_1.population),
-                p2 = parseInt(place_2.population);
-            console.log(p1 + " " + p2);
-
-            // compare value which is clicked to another value
-            // you can do it either by $(this).val()
-            // or the way beneath
-
-            //correct
-            if ($(this).attr('id') === 'A' && $(this).val() > $('#B').val()) {
-                $(".answer").empty();
-                $("ul").append("<span class='answer'><br><br>Correct!<br><br>" + place_1.name + " has a population of " + place_1.population + ".<br> While " + place_2.name + " has a population of " + place_2.population + ".</span>");
-                console.log('place 1 is greater');
-            //incorrect
-            } else if ($(this).attr('id') === 'A' && $(this).val() < $('#B').val()) {
-                $(".answer").empty();
-                $("ul").append("<span class='answer'><br><br>Incorrect. Try the other one.<br><br>");
-                console.log("incorrect");
-            //correct
-            } else if ($(this).attr('id') === 'B' && $(this).val() > $('#A').val()) {
-                $(".answer").empty();
-                $("ul").append("<span class='answer'><br><br>Correct!<br><br>" + place_2.name + " has a population of " + place_2.population + ".<br> While " + place_1.name + " has a population of " + place_1.population + ".</span>");
-                console.log('place 2 is greater');
-            //incorrect
-            } else if ($(this).attr('id') === 'B' && $(this).val() < $('#A').val()) {
-                $(".answer").empty();
-                $("ul").append("<span class='answer'><br><br>Incorrect. Try the other one.<br><br>");
-                console.log("incorrect");
-            }
-
-        });
-
+    $("#message").hide();
+    $("#play").css("display", "inline");
 });
