@@ -1,13 +1,13 @@
 'use strict';
 
-
 var data = [];
 
 $('#start').click(function() {
-
+    
     $("#start").hide();
-    $("#message").css("display", "inline");
-
+    $("#button-instructions").show();
+    // $("#message").css("display", "inline");
+    
     var url = 'https://api.census.gov/data/2014/acs1?get=NAME,B01001_001E';
     var API_URL = {
         all: url + '&for=place:*',
@@ -24,9 +24,11 @@ $('#start').click(function() {
                 data.push(mainArray[i]);
             }
 
-            $('#play').click(function() {
+            $('#play').css("display", "block").click(function() {
                 $("ul").empty();
                 $("#question").css("display", "block");
+                $('#play').hide();
+                $("#button-instructions").hide();
 
                 function getPlace() {
 
@@ -70,23 +72,21 @@ $('#start').click(function() {
                         //correct
                         if ($(this).attr('id') === 'A' && $(this).val() > $('#B').val()) {
                             $(".answer").empty();
+                            $("#play").css("display", "block");
                             $("ul").append("<div class='answer'><h3>Correct!</h3><p>" + place_1.name + " has a population of <span>" + place_1.population + "</span>.</p><p> While " + place_2.name + " has a population of <span>" + place_2.population + "</span>.</p></div>");
-                            console.log('place 1 is greater');
                             //incorrect
                         } else if ($(this).attr('id') === 'A' && $(this).val() < $('#B').val()) {
                             $(".answer").empty();
                             $("ul").append("<div class='answer'><h3>Incorrect.</h3><p>Try the other one.</p>");
-                            console.log("incorrect");
                             //correct
                         } else if ($(this).attr('id') === 'B' && $(this).val() > $('#A').val()) {
                             $(".answer").empty();
+                            $("#play").css("display", "block");
                             $("ul").append("<div class='answer'><h3>Correct!</h3><p>" + place_2.name + " has a population of <span>" + place_2.population + "</span>.</p><p> While " + place_1.name + " has a population of <span>" + place_1.population + "</span>.</p></div>");
-                            console.log('place 2 is greater');
                             //incorrect
                         } else if ($(this).attr('id') === 'B' && $(this).val() < $('#A').val()) {
                             $(".answer").empty();
                             $("ul").append("<div class='answer'><h3>Incorrect.</h3><p> Try the other one.</p></div>");
-                            console.log("incorrect");
                         }
 
                     });
@@ -100,5 +100,5 @@ $('#start').click(function() {
 
 
     $("#message").hide();
-    $("#play").css("display", "inline");
+    $("#play").css("display", "block");
 });

@@ -60,6 +60,17 @@ background: linear-gradient(to left, #616161 , #9bc5c3); /* W3C, IE 10+/ Edge, F
     color: #fff;
     margin-top:100px;
 }
+#play {
+    display: block;
+    margin: 2em auto;
+    display: none;
+}
+#button-instructions {
+    display: none;
+    width: 40%;
+    color: white;
+    margin: 1em auto;
+}
 
 ul {
     text-align: center;
